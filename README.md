@@ -55,7 +55,7 @@ Add a role:
 user.add_role(:admin)
 
 # An object-related role.
-user.add_role(:author, Page.last)
+user.add_role(:editor, Page.last)
 ```
 
 Remove a role:
@@ -65,7 +65,7 @@ Remove a role:
 user.remove_role(:admin)
   
 # An object-related role.
-user.remove_role(:author, Page.last)
+user.remove_role(:editor, Page.last)
 ```
   
 Query a role:
@@ -75,13 +75,13 @@ Query a role:
 user.has_role?(:admin)
 
 # An object-related role.
-user.has_role?(:author, Page.last)
+user.has_role?(:editor, Page.last)
 ```
   
 Get objects of a given class for which a user has a given role:
 
 ```ruby
-user.objects_with_role(:author, Page)
+user.objects_with_role(:editor, Page)
 ```  
 
 Get a user's roles for a given object:
@@ -99,7 +99,7 @@ user.roles_for_object(nil)
 Get users with a given role for an object:
 
 ```ruby
-page.users_with_role(:author)
+page.users_with_role(:editor)
 ```
  
 ## Requirements
