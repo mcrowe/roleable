@@ -6,99 +6,99 @@ Add user roles to your active_record-backed rails app. A user can have multiple 
 
 Add this line to your application's Gemfile:
 
-  ```ruby
-  gem 'roleable'
-  ```
+```ruby
+gem 'roleable'
+```
 
 And then execute:
 
     $ bundle
 
-Create `user_roles` and `roles` table migrations using the generator:
+Run the generator to create the necessary migrations:
 
     $ rails g roleable:install
     
-Run the migrations:
+And then run the migrations:
 
     $ rake db:migrate
     
+(This will create the user_roles and roles tables, together with the appropriate database indices.)
+    
 Include `Roleable::Subject` into your user (subject) model:
 
-  ```ruby
-  class User << ActiveRecord::Base
-    include Roleable::Subject
-    ...
-  end
-  ```  
+```ruby
+class User << ActiveRecord::Base
+  include Roleable::Subject
+  ...
+end
+```  
 
-Include `Roleable::Object` into any models you want to relate a user role to:
+Include `Roleable::Object` into any models you want to relate a user role to (objects):
 
-  ```ruby
-  class Page << ActiveRecord::Base
-    include Roleable::Object
-    ...
-  end
-  ```
+```ruby
+class Page << ActiveRecord::Base
+  include Roleable::Object
+  ...
+end
+```
 
 ## Usage
 
 ### Subject API
 
-Adding a user role:
+Add a role:
 
-  ```ruby
-  # A global role.
-  user.add_role(:admin)
-  
-  # An object-related role.
-  page = Page.last
-  user.add_role(:author, page)
-  ```
+```ruby
+# A global role.
+user.add_role(:admin)
+
+# An object-related role.
+user.add_role(:author, Page.last)
+```
 
 Remove a role:
 
-  ```ruby
-  # A global role.
-  user.remove_role(:admin)
+```ruby
+# A global role.
+user.remove_role(:admin)
   
-  # An object-related role.
-  page = Page.last
-  user.remove_role(:author, page)
-  ```
+# An object-related role.
+user.remove_role(:author, Page.last)
+```
   
-Check for a role:
+Query a role:
 
-  ```ruby
-  # A global role.
-  user.has_role?(:admin)
-  
-  # An object-related role.
-  page = Page.last
-  user.has_role?(:author, page)
-  
-Get all the objects matching a role:
+```ruby
+# A global role.
+user.has_role?(:admin)
 
-  ```ruby
-  user.objects_for_role(:author, Page)
-  ```  
-
-Get all the users roles for a given object:
-
-  ```ruby
-  page = Page.last
-  user.roles_for_object(page)
+# An object-related role.
+user.has_role?(:author, Page.last)
+```
   
-  # Or, all the global roles for a user:
-  user.roles_for_object(nil)
-  ```
+Get objects of a given class for which a user has a given role:
+
+```ruby
+user.objects_with_role(:author, Page)
+```  
+
+Get a user's roles for a given object:
+
+```ruby
+page = Page.last
+user.roles_for_object(Page.last)
+
+# Or, all the global roles for a user:
+user.roles_for_object(nil)
+```
   
 ### Object API
 
-Get all the users with a given role for this object:
+Get users with a given role for an object:
 
-  ```ruby
-  page.users_with_role(:author)
-  ```
+```ruby
+page.users_with_role(:author)
+```
  
 ## Requirements
 
