@@ -87,7 +87,6 @@ user.objects_with_role(:editor, Page)
 Get a user's roles for a given object:
 
 ```ruby
-page = Page.last
 user.roles_for_object(Page.last)
 
 # Or, all the global roles for a user:
