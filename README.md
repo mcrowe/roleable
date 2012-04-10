@@ -26,27 +26,27 @@ And then run the migrations:
 
 ## Setup
     
-Include `Roleable::Subject` into your user (subject) model, e.g.:
+Include `Roleable::RoleSubject` into your user (subject) model, e.g.:
 
 ```ruby
 class User < ActiveRecord::Base
-  include Roleable::Subject
+  include Roleable::RoleSubject
   ...
 end
 ```  
 
-Include `Roleable::Object` into any models you want to relate a user role to (objects), e.g.:
+Include `Roleable::RoleObject` into any models you want to relate a user role to (objects), e.g.:
 
 ```ruby
 class Page < ActiveRecord::Base
-  include Roleable::Object
+  include Roleable::RoleObject
   ...
 end
 ```
 
 ## Usage
 
-### Subject
+### RoleSubject
 
 Add a role:
 
@@ -93,7 +93,7 @@ user.roles_for_object(Page.last)
 user.roles_for_object(nil)
 ```
   
-### Object
+### RoleObject
 
 Get users with a given role for an object:
 

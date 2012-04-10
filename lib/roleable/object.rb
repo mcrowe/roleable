@@ -1,0 +1,2 @@
+module Roleable::RoleObject
+end
