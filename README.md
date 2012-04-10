@@ -29,7 +29,7 @@ And then run the migrations:
 Include `Roleable::Subject` into your user (subject) model, e.g.:
 
 ```ruby
-class User << ActiveRecord::Base
+class User < ActiveRecord::Base
   include Roleable::Subject
   ...
 end
@@ -38,7 +38,7 @@ end
 Include `Roleable::Object` into any models you want to relate a user role to (objects), e.g.:
 
 ```ruby
-class Page << ActiveRecord::Base
+class Page < ActiveRecord::Base
   include Roleable::Object
   ...
 end
