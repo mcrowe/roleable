@@ -23,6 +23,8 @@ And then run the migrations:
     $ rake db:migrate
     
 (This will create the user_roles and roles tables, together with the appropriate database indices.)
+
+## Setup
     
 Include `Roleable::Subject` into your user (subject) model, e.g.:
 
