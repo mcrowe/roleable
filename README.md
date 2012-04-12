@@ -1,8 +1,8 @@
 # Roleable
 
-A flexible user-roles gem for active-record-backed Rails 3 applications. Allows for multiple roles scoped to instances of any model, as well as global roles (admin, for example). 
+A flexible user-roles solution for active-record-backed Rails 3 applications. Allows for multiple roles scoped to instances of any model, as well as global roles (admin, for example). 
 
-Roleable is designed to be ultra simple and obvious, letting you build upon it to satisfy your needs. It is also designed to be efficient, using database indices, and well-crafted queries so that it can handle huge numbers of roles.
+Roleable is designed to be ultra simple and obvious, letting you build upon it to satisfy your needs. It is also designed to be efficient: using database indices, and well-crafted queries so that it can handle a huge number of roles.
 
 ## Installation
 
@@ -16,7 +16,7 @@ And then execute:
 
     $ bundle
 
-Run the generator to create migrations and stub models for `Role` and `UserRole`:
+Run the generator to create the `Role` and `UserRole` models and migrations:
 
     $ rails g roleable:install
     
@@ -24,7 +24,7 @@ And then run the migrations:
 
     $ rake db:migrate
     
-(This will create the user_roles and roles tables, together with the appropriate database indices.)
+(This will create the `roles` and `user_roles` tables, together with the appropriate database indices.)
 
 ## Setup
     
@@ -80,24 +80,27 @@ user.has_role?(:admin)
 user.has_role?(:editor, Page.first)
 ```
   
-Get resources of a given class for which a user has a given role:
+Find the resources of a given class for which a user has a given role:
 
 ```ruby
 user.resources_with_role(:editor, Page)
 ```  
 
-Get a user's roles for a given resource:
+Find a user's roles for a given resource:
 
 ```ruby
 user.roles_for_resource(Page.first)
+```
 
 # Or, all the global roles for a user:
+
+```ruby
 user.roles_for_resource(nil)
 ```
   
 ### Resource
 
-Get users with a given role:
+Find users with a given role:
 
 ```ruby
 Page.first.users_with_role(:editor)
