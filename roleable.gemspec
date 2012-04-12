@@ -4,8 +4,8 @@ require File.expand_path('../lib/roleable/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Mitch Crowe"]
   gem.email         = ["crowe.mitch@gmail.com"]
-  gem.description   = %q{Simple active_record-based roles}
-  gem.summary       = %q{Simple active_record-based roles}
+  gem.description   = %q{Roles solution for active-record-backed Rails 3 applications}
+  gem.summary       = %q{Roles solution for active-record-backed Rails 3 applications}
   gem.homepage      = "https://github.com/mcrowe/roleable"
 
   gem.files         = `git ls-files`.split($\)

@@ -1,5 +1,7 @@
 # Roleable
 
+[![Build Status](https://secure.travis-ci.org/mcrowe/roleable.png?branch=master)](http://travis-ci.org/mcrowe/roleable)
+
 A flexible user-roles solution for active-record-backed Rails 3 applications. Allows for multiple roles scoped to instances of any model, as well as global roles (admin, for example). 
 
 Roleable is designed to be ultra simple and obvious, letting you build upon it to satisfy your needs. It is also designed to be efficient: using database indices, and well-crafted queries so that it can handle a huge number of roles.
