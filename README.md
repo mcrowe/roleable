@@ -67,7 +67,7 @@ Remove a role:
 user.remove_role(:admin)
   
 # resource-scoped
-user.remove_role(:editor, Page.first)
+user.remove_role(:editor, page)
 ```
   
 Query a role:
@@ -77,7 +77,7 @@ Query a role:
 user.has_role?(:admin)
 
 # resource-scoped
-user.has_role?(:editor, Page.first)
+user.has_role?(:editor, page)
 ```
   
 Find the resources of a given class for which a user has a given role:
@@ -89,7 +89,7 @@ user.resources_with_role(:editor, Page)
 Find a user's roles for a given resource:
 
 ```ruby
-user.roles_for_resource(Page.first)
+user.roles_for_resource(page)
 ```
 
 Or, all the global roles for a user:
@@ -103,7 +103,7 @@ user.roles_for_resource(nil)
 Find users with a given role:
 
 ```ruby
-Page.first.users_with_role(:editor)
+page.users_with_role(:editor)
 ```
  
 ## Requirements
