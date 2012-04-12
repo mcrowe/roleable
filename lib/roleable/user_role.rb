@@ -17,7 +17,7 @@ module Roleable::UserRole
   end
 
   def with_role_name(role_name)
-    role = Role.find_by_name(role_name)
+    role = ::Role.find_by_name(role_name)
     with_role(role)
   end
 
