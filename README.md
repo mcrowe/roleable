@@ -92,7 +92,7 @@ Find a user's roles for a given resource:
 user.roles_for_resource(Page.first)
 ```
 
-# Or, all the global roles for a user:
+Or, all the global roles for a user:
 
 ```ruby
 user.roles_for_resource(nil)
