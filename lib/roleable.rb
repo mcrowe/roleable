@@ -1,5 +1,3 @@
-require "roleable/version"
-
-module Roleable
-  # Your code goes here...
-end
+require 'roleable/version'
+require 'roleable/subject'
+require 'roleable/resource'
