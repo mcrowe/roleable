@@ -49,7 +49,7 @@ describe Roleable::Subject do
       it 'sets the resource to nil' do
         @user_role.resource.should == nil
       end
-
+      
     end
   
     context 'with a resource' do
@@ -62,7 +62,13 @@ describe Roleable::Subject do
       it 'associates the user role with the given resource' do
         @user_role.resource.should == @page
       end
-    
+      
+      context 'when the user already has the given role for the resource' do
+        it 'doesnt create another user role' do
+          expect { @user.add_role(:admin, @page) }.to_not change(UserRole, :count)
+        end
+      end
+          
     end
   
   end

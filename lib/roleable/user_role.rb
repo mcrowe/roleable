@@ -28,6 +28,23 @@ module Roleable::UserRole
   def with_resource_class(resource_class)
     where(:resource_type => resource_type_from_class(resource_class))
   end
+  
+  # Create a record with the given attributes if there are no records
+  # that already have those attributes.
+  #
+  # Returns the record if it was saved, otherwise nil.
+  def create_if_unique!(attributes)
+    user_role = new(attributes)
+    
+    record_attributes = user_role.attributes
+    record_attributes.delete('id')
+    
+    if !exists?(record_attributes) && user_role.save
+      user_role
+    else
+      nil
+    end
+  end
 
   private
 

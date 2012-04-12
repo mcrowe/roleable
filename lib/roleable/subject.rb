@@ -7,7 +7,7 @@ module Roleable::Subject
   def add_role(role_name, resource = nil)
     role = Role.find_by_name(role_name) or return
     
-    UserRole.create!(:user => self, :role => role, :resource => resource)    
+    UserRole.create_if_unique!(:user => self, :role => role, :resource => resource)    
   end
 
   def has_role?(role_name, resource = nil)
