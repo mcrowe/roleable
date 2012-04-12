@@ -36,8 +36,9 @@ module Roleable::UserRole
   def create_if_unique!(attributes)
     user_role = new(attributes)
     
-    record_attributes = user_role.attributes
-    record_attributes.delete('id')
+    record_attributes = user_role.attributes.reject do |k, v| 
+      %w(id updated_at created_at).include?(k)
+    end
     
     if !exists?(record_attributes) && user_role.save
       user_role

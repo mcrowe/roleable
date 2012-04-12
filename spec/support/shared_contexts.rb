@@ -19,6 +19,8 @@ shared_context 'with models' do
       t.integer :role_id
       t.integer :resource_id
       t.string :resource_type
+      
+      t.timestamps
     end
     model { extend Roleable::UserRole }
   end
