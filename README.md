@@ -57,7 +57,7 @@ Add a role:
 user.add_role(:admin)
 
 # resource-scoped
-user.add_role(:editor, Page.first)
+user.add_role(:editor, page)
 ```
 
 Remove a role:
