@@ -33,5 +33,5 @@ module Roleable::Subject
     user_roles = UserRole.with_user(self).with_resource(resource)    
     Role.includes(:user_roles).merge(user_roles)
   end
-
+  
 end

@@ -1,3 +1,5 @@
 require 'roleable/version'
 require 'roleable/subject'
 require 'roleable/resource'
+require 'roleable/role'
+require 'roleable/user_role'
