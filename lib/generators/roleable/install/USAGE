@@ -1,0 +1,2 @@
+Description:
+  The roleable:install generator creates `Role` and `UserRole` models, and generates the necessary migrations to create their database tables.
