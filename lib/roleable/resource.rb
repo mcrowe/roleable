@@ -1,6 +1,6 @@
 module Roleable::Resource
 
-  def self.included(base) #:nodoc:all
+  def self.included(base)
     base.has_many :user_roles, :as => :resource
   end
 

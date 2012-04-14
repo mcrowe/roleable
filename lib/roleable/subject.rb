@@ -1,6 +1,6 @@
 module Roleable::Subject
   
-  def self.included(base) #:nodoc:all
+  def self.included(base)
     base.has_many :user_roles
   end
 
