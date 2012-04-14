@@ -7,7 +7,7 @@ module Roleable::Subject
   # Add a role to the user scoped to the given resource or global if no resource given.
   #
   # Does nothing if a role with the given name doesn't exist, or if the user already has
-  # the given role.
+  # the given role. Test
   #
   # ==== Examples
   #
