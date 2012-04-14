@@ -1,4 +1,4 @@
-module Roleable::UserRole #:nodoc: all
+module Roleable::UserRole #:nodoc:all
   
   def self.extended(base)
     base.belongs_to :user

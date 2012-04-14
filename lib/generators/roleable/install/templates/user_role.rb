@@ -1,4 +1,4 @@
-class UserRole < ActiveRecord::Base #:nodoc: all
+class UserRole < ActiveRecord::Base #:nodoc:all
   
   extend Roleable::UserRole
   

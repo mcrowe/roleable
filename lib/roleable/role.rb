@@ -1,4 +1,4 @@
-module Roleable::Role #:nodoc: all
+module Roleable::Role #:nodoc:all
 
   def self.extended(base) 
     base.has_many :user_roles

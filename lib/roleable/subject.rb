@@ -1,13 +1,13 @@
 module Roleable::Subject
   
-  def self.included(base) #:nodoc: all
+  def self.included(base) #:nodoc:all
     base.has_many :user_roles
   end
 
   # Add a role to the user scoped to the given resource or global if no resource given.
   #
   # Does nothing if a role with the given name doesn't exist, or if the user already has
-  # the given role. Test
+  # the given role.
   #
   # ==== Examples
   #

@@ -1,7 +1,7 @@
 require 'rails/generators/migration'
 
 module Roleable
-  module Generators #:nodoc: all
+  module Generators #:nodoc:all
     class InstallGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
       source_root File.expand_path('../templates', __FILE__)
