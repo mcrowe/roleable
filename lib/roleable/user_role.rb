@@ -1,6 +1,6 @@
-module Roleable::UserRole
+module Roleable::UserRole #:nodoc: all
   
-  def self.extended(base)  
+  def self.extended(base)
     base.belongs_to :user
     base.belongs_to :role
     base.belongs_to :resource, :polymorphic => true

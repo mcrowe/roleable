@@ -1,6 +1,6 @@
 module Roleable::Resource
 
-  def self.included(base)
+  def self.included(base) #:nodoc: all
     base.has_many :user_roles, :as => :resource
   end
 
@@ -8,7 +8,7 @@ module Roleable::Resource
   #
   # ==== Examples
   #
-  #   page.users_with_role(:editor)   #=> [user1, user2, ...]
+  #   page.users_with_role(:editor)   # => [user1, user2, ...]
   #
   def users_with_role(role_name)
     user_roles = ::UserRole.with_role_name(role_name)

@@ -1,4 +1,4 @@
-class RoleableCreateRolesAndUserRoles < ActiveRecord::Migration
+class RoleableCreateRolesAndUserRoles < ActiveRecord::Migration #:nodoc: all
   
   def change
     create_table :roles do |t|
