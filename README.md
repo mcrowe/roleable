@@ -107,6 +107,8 @@ Find users with a given role:
 ```ruby
 page.users_with_role(:editor)
 ```
+
+For more details check out the [API documentation](http://rubydoc.info/github/mcrowe/roleable/master/frames) on rubydoc.info.
  
 ## Requirements
 
