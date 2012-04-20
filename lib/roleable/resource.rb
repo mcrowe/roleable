@@ -5,8 +5,7 @@ module Roleable::Resource
   end
   
   def users_with_role(role_name)
-    user_roles = ::UserRole.with_role_name(role_name)
-    User.joins(:user_roles).merge(user_roles)
+    User.joins(:user_roles).merge(::UserRole.with_role_name(role_name).with_resource(self))
   end
   
 end

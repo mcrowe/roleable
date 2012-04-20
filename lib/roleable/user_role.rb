@@ -33,7 +33,7 @@ module Roleable::UserRole
   # that already have those attributes.
   #
   # Returns the record if it was saved, otherwise nil.
-  def create_if_unique!(attributes)
+  def create_if_unique!(attributes)  
     user_role = new(attributes)
     
     record_attributes = user_role.attributes.reject do |k, v| 
