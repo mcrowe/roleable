@@ -5,7 +5,7 @@ shared_context 'with models' do
   end
 
   with_model :Page do
-    model { include Roleable::Resource }
+    model { include Roleable::Resource; subject_model 'User' }
   end
 
   with_model :Role do
@@ -13,16 +13,16 @@ shared_context 'with models' do
     model { extend Roleable::Role }
   end
 
-  with_model :UserRole do
+  with_model :SubjectRole do
     table do |t|
-      t.integer :user_id
+      t.integer :subject_id
       t.integer :role_id
       t.integer :resource_id
       t.string :resource_type
-      
+
       t.timestamps
     end
-    model { extend Roleable::UserRole }
+    model { extend Roleable::SubjectRole }
   end
-  
+
 end

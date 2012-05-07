@@ -2,7 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/mcrowe/roleable.png?branch=master)](http://travis-ci.org/mcrowe/roleable)
 
-A flexible user-roles solution for active-record-backed Rails 3 applications. Allows for multiple roles scoped to instances of any model, as well as global roles (admin, for example). 
+A flexible user-roles solution for active-record-backed Rails 3 applications. Allows for multiple roles scoped to instances of any model, as well as global roles (admin, for example).
 
 Roleable is designed to be ultra simple and obvious, letting you build upon it to satisfy your needs. It is also designed to be efficient: using database indices, and well-crafted queries so that it can handle a huge number of roles.
 
@@ -18,18 +18,18 @@ And then execute:
 
     $ bundle
 
-Run the generator to create the `Role` and `UserRole` models and migrations:
+Run the generator to create the `Role` and `SubjectRole` models and migrations:
 
     $ rails g roleable:install
-    
+
 And then run the migrations:
 
     $ rake db:migrate
-    
+
 (This will create the `roles` and `user_roles` tables, together with the appropriate database indices.)
 
 ## Setup
-    
+
 Include `Roleable::Subject` into your user (subject) model, e.g.:
 
 ```ruby
@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   include Roleable::Subject
   ...
 end
-```  
+```
 
 Include `Roleable::Resource` into any models you want to relate a user role to (resource), e.g.:
 
@@ -67,11 +67,11 @@ Remove a role:
 ```ruby
 # global
 user.remove_role(:admin)
-  
+
 # resource-scoped
 user.remove_role(:editor, page)
 ```
-  
+
 Query a role:
 
 ```ruby
@@ -81,12 +81,12 @@ user.has_role?(:admin)
 # resource-scoped
 user.has_role?(:editor, page)
 ```
-  
+
 Find the resources of a given class for which a user has a given role:
 
 ```ruby
 user.resources_with_role(:editor, Page)
-```  
+```
 
 Find a user's roles for a given resource:
 
@@ -99,7 +99,7 @@ Or, all the global roles for a user:
 ```ruby
 user.roles_for_resource(nil)
 ```
-  
+
 ### Resource
 
 Find users with a given role:
@@ -109,7 +109,7 @@ page.users_with_role(:editor)
 ```
 
 For more details check out the [API documentation](http://rubydoc.info/github/mcrowe/roleable/master/frames) on rubydoc.info.
- 
+
 ## Requirements
 
 Rails 3, ActiveRecord, Ruby >= 1.8.7
