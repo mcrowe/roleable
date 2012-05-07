@@ -19,7 +19,8 @@ module Roleable::Resource
   #   page.subjects_with_role(:editor)   # => [subject1, subject2, ...]
   #
   def subjects_with_role(role_name)
-    self.class.subject_model.constantize.joins(:subject_roles).merge(::SubjectRole.with_role_name(role_name).with_resource(self))
+    subject = self.class.subject_model.constantize
+    subject.joins(:subject_roles).merge(::SubjectRole.with_role_name(role_name).with_resource(self))
   end
 
 end
