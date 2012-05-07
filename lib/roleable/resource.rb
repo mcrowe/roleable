@@ -3,7 +3,7 @@ module Roleable::Resource
   module ClassMethods
     def subject_model(model_name = nil)
       model_name && @subject_model = model_name
-      @subject_model
+      @subject_model || 'Subject'
     end
   end
 

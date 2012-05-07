@@ -1,6 +1,17 @@
 module Roleable::SubjectRole
 
+  module ClassMethods
+    def subject_model(model_name = nil)
+      if model_name
+        @subject_model = model_name
+        self.belongs_to :subject, :class_name => model_name
+      end
+      @subject_model || 'Subject'
+    end
+  end
+
   def self.extended(base)
+    base.extend(ClassMethods)
     base.belongs_to :subject
     base.belongs_to :role
     base.belongs_to :resource, :polymorphic => true

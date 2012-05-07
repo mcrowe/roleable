@@ -22,7 +22,7 @@ shared_context 'with models' do
 
       t.timestamps
     end
-    model { extend Roleable::SubjectRole }
+    model { extend Roleable::SubjectRole; subject_model 'User' }
   end
 
 end
