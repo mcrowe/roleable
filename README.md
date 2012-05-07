@@ -2,7 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/mcrowe/roleable.png?branch=master)](http://travis-ci.org/mcrowe/roleable)
 
-A flexible user-roles solution for active-record-backed Rails 3 applications. Allows for multiple roles scoped to instances of any model, as well as global roles (admin, for example).
+A flexible subject-roles solution for active-record-backed Rails 3 applications. Allows for multiple roles scoped to instances of any model, as well as global roles (admin, for example).
 
 Roleable is designed to be ultra simple and obvious, letting you build upon it to satisfy your needs. It is also designed to be efficient: using database indices, and well-crafted queries so that it can handle a huge number of roles.
 
@@ -26,7 +26,7 @@ And then run the migrations:
 
     $ rake db:migrate
 
-(This will create the `roles` and `user_roles` tables, together with the appropriate database indices.)
+(This will create the `roles` and `subject_roles` tables, together with the appropriate database indices.)
 
 ## Setup
 
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-Include `Roleable::Resource` into any models you want to relate a user role to (resource), e.g.:
+Include `Roleable::Resource` into any models you want to relate a subject role to (resource), e.g.:
 
 ```ruby
 class Page < ActiveRecord::Base
@@ -105,7 +105,7 @@ user.roles_for_resource(nil)
 Find users with a given role:
 
 ```ruby
-page.users_with_role(:editor)
+page.subjects_with_role(:editor)
 ```
 
 For more details check out the [API documentation](http://rubydoc.info/github/mcrowe/roleable/master/frames) on rubydoc.info.
