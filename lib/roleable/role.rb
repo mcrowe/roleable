@@ -1,9 +1,16 @@
 module Roleable::Role
 
-  def self.extended(base)
-    base.has_many :subject_roles
+  module ClassMethods
+    def acts_as_role
+      self.has_many :subject_roles
+      self.attr_accessible :name
+    end
+  end
 
-    base.attr_accessible :name
+  def self.included(base)
+    base.extend(ClassMethods)
   end
 
 end
+
+ActiveRecord::Base.send(:include, Roleable::Role)

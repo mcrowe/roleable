@@ -1,16 +1,16 @@
 shared_context 'with models' do
 
   with_model :User do
-    model { include Roleable::Subject }
+    model { acts_as_subject }
   end
 
   with_model :Page do
-    model { include Roleable::Resource; subject_model 'User' }
+    model { acts_as_resource :class_name => 'User' }
   end
 
   with_model :Role do
     table { |t| t.string :name }
-    model { extend Roleable::Role }
+    model { acts_as_role }
   end
 
   with_model :SubjectRole do
@@ -22,7 +22,7 @@ shared_context 'with models' do
 
       t.timestamps
     end
-    model { extend Roleable::SubjectRole; subject_model 'User' }
+    model { acts_as_subject_role :class_name => 'User' }
   end
 
 end
