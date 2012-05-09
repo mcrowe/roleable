@@ -17,12 +17,13 @@ module Roleable::UserRole
   end
 
   def with_role_name(role_name)
-    role = ::Role.find_by_name(role_name)
-    with_role(role)
+    roles = ::Role.find_all_by_name(role_name)
+    with_roles(roles)
   end
 
-  def with_role(role)
-    where(:role_id => role && role.id)
+  def with_roles(roles)
+    role_ids = roles.map { |r| r.id }
+    where(:role_id => role_ids)
   end
 
   def with_resource_class(resource_class)
