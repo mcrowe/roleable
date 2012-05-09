@@ -1,9 +1,10 @@
 module Roleable::Role
 
-  def self.extended(base) 
-    base.has_many :user_roles
-
-    base.attr_accessible :name
+  def acts_as_role
+    self.has_many :subject_roles
+    self.attr_accessible :name
   end
-  
+
 end
+
+ActiveRecord::Base.send(:extend, Roleable::Role)
