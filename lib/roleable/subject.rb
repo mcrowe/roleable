@@ -54,10 +54,12 @@ module Roleable::Subject
   end
   
   # Return a list of resources of the given class, for which the user has the given role.
+  # If passed an array or roles, returns resources for which the user has any of the roles.
   #
   # ==== Examples
   #
   #   user.resources_with_role(:editor, Page)  # => [page1, page2, ...]
+  #   user.resources_with_role([:editor, :author], Page)  # => [page1, page2, ...]
   #
   def resources_with_role(role_name, resource_class)
     user_roles = ::UserRole.with_user(self).with_role_name(role_name).with_resource_class(resource_class)
