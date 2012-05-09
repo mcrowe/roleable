@@ -22,8 +22,8 @@ describe Roleable::Subject do
         @result.should be_false
       end
     
-      it 'doesnt create a new user_role' do
-        UserRole.count.should == 0
+      it 'doesnt create a new applied_role' do
+        AppliedRole.count.should == 0
       end
     
     end
@@ -35,11 +35,11 @@ describe Roleable::Subject do
       end
   
       it 'creates a new user role' do
-        UserRole.count.should == 1
+        AppliedRole.count.should == 1
       end
     
       it 'associates the user role with the given user' do
-        @user_role.user.should == @user
+        @user_role.subject.should == @user
       end          
 
       it 'associates the user role with the given role' do
@@ -65,7 +65,7 @@ describe Roleable::Subject do
       
       context 'when the user already has the given role for the resource' do
         it 'doesnt create another user role' do
-          expect { @user.add_role(:admin, @page) }.to_not change(UserRole, :count)
+          expect { @user.add_role(:admin, @page) }.to_not change(AppliedRole, :count)
         end
       end
           
