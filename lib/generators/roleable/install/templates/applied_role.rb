@@ -1,5 +1,5 @@
 class AppliedRole < ActiveRecord::Base
   
-  extend Roleable::UserRole
+  extend Roleable::AppliedRole
   
 end

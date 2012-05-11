@@ -1,4 +1,4 @@
-class RoleableCreateRolesAndUserRoles < ActiveRecord::Migration
+class RoleableCreateRolesAndAppliedRoles < ActiveRecord::Migration
   
   def change
     create_table :roles do |t|

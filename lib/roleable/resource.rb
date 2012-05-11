@@ -18,7 +18,7 @@ module Roleable::Resource
   private
   
   def subject_class
-    Roleable.configuration.subject_class_name.constantize
+    Roleable.configuration.subject_class_name.classify.constantize
   end
   
 end
