@@ -16,11 +16,11 @@ module Roleable::Resource
     subject_class.joins(:applied_roles).
       merge( ::AppliedRole.with_role_name(role_name).with_resource(self) )
   end
-  
+
   private
-  
+
   def subject_class
     Roleable.configuration.subject_class_name.classify.constantize
   end
-  
+
 end

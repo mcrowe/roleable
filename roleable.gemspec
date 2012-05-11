@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "roleable"
   gem.require_paths = ["lib"]
   gem.version       = Roleable::VERSION
-  
+
   gem.add_development_dependency 'rake', '~> 0.9'
   gem.add_development_dependency 'rspec', '~> 2.8'
   gem.add_development_dependency 'sqlite3', '~> 1.3'

@@ -13,11 +13,11 @@ module Roleable
         copy_file 'initializer.rb', 'config/initializers/roleable.rb'
         migration_template 'migration.rb', 'db/migrate/roleable_create_roles_and_applied_roles.rb'
       end
-      
+
       def self.next_migration_number(path)
         Time.now.utc.strftime("%Y%m%d%H%M%S")
       end
-      
+
     end
   end
 end
