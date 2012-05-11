@@ -5,10 +5,12 @@ module Roleable::Resource
   end
 
   # Return a list of users that have the given role for this resource.
+  # If a list of role names is given, return users with any of those roles for this resource.
   #
   # ==== Examples
   #
-  #   page.subjects_with_role(:editor)   # => [user1, user2, ...]
+  #   page.subjects_with_role(:editor)            # => [user1, user2, ...]
+  #   page.subjects_with_role([:editor, :author]) # => [user1, user2, ...]
   #
   def subjects_with_role(role_name)
     subject_class.joins(:applied_roles).

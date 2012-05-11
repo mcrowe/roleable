@@ -86,7 +86,13 @@ Find the resources of a given class for which a user has a given role:
 
 ```ruby
 user.resources_with_role(:editor, Page)
-```  
+```
+
+Find the resource of a given class for which a user has _any_ of a list of roles:
+
+```ruby
+user.resources_with_role([:editor, :author], Page)
+```
 
 Find a user's roles for a given resource:
 
@@ -116,6 +122,12 @@ By default, roleable assumes that your subject model is called `User`. You can c
 Roleable.configure do |config|
   config.subject_class_name = 'principle'
 end
+```
+
+Find users matching _any_ of a list of roles:
+
+```ruby
+page.users_with_role([:editor, :author])
 ```
 
 For more details check out the [API documentation](http://rubydoc.info/github/mcrowe/roleable/master/frames) on rubydoc.info.

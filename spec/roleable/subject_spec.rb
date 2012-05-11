@@ -8,6 +8,7 @@ describe Roleable::Subject do
     @user = User.create
     @admin_role = Role.create(:name => 'admin')
     @editor_role = Role.create(:name => 'editor')
+    @author_role = Role.create(:name => 'author')
   end
 
   describe '#add_role' do
@@ -160,23 +161,36 @@ describe Roleable::Subject do
 
   describe '#resources_with_role' do
   
-    context 'when the user has the given role for several resources of the given class' do
-      it 'returns a list containing those resources' do
-        3.times do 
-          page = Page.create
-          @user.add_role(:editor, page)
-        end
+    context 'with a single role' do
+    
+      context 'when the user has the given role for several resources of the given class' do
+        it 'returns a list containing those resources' do
+          3.times { @user.add_role(:editor, Page.create) }
       
-        pages = @user.resources_with_role(:editor, Page)
+          pages = @user.resources_with_role(:editor, Page)
         
-        pages.length.should == 3
-        pages.first.should be_a(Page)
+          pages.length.should == 3
+          pages.first.should be_a(Page)
+        end
       end
-    end
   
-    context 'when the user doesnt have the given role for any resources of the given class' do
-      it 'returns an empty list' do
-        @user.resources_with_role(:editor, Page).should be_empty        
+      context 'when the user doesnt have the given role for any resources of the given class' do
+        it 'returns an empty list' do
+          @user.resources_with_role(:editor, Page).should be_empty        
+        end
+      end
+      
+    end
+    
+    context 'with a list of roles' do
+      it 'returns a list of resources the user has those roles for' do
+        3.times { @user.add_role(:editor, Page.create) }
+        2.times { @user.add_role(:author, Page.create) }
+        Page.create
+        
+        pages = @user.resources_with_role([:editor, :author], Page)
+        
+        pages.length.should == 5        
       end
     end
   
