@@ -53,7 +53,7 @@ describe Roleable::Resource do
         2.times { User.create.add_role(:author, @page) }
         User.create
         
-        users = @page.users_with_role([:editor, :author])
+        users = @page.subjects_with_role([:editor, :author])
       
         users.length.should == 5
       end
