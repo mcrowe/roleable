@@ -2,7 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/mcrowe/roleable.png?branch=master)](http://travis-ci.org/mcrowe/roleable)
 
-A flexible user-roles solution for active-record-backed Rails 3 applications. Allows for multiple roles scoped to instances of any model, as well as global roles (admin, for example). 
+A flexible roles solution for active-record-backed Rails 3 applications. Allows for multiple roles scoped to instances of any model, as well as global roles (admin, for example). 
 
 Roleable is designed to be ultra simple and obvious, letting you build upon it to satisfy your needs. It is also designed to be efficient: using database indices, and well-crafted queries so that it can handle a huge number of roles.
 
@@ -18,7 +18,7 @@ And then execute:
 
     $ bundle
 
-Run the generator to create the `Role` and `UserRole` models and migrations:
+Run the generator to create the `Role` and `AppliedRole` models, migrations, and a configuration initializer:
 
     $ rails g roleable:install
     
@@ -26,11 +26,11 @@ And then run the migrations:
 
     $ rake db:migrate
     
-(This will create the `roles` and `user_roles` tables, together with the appropriate database indices.)
+(This will create the `roles` and `applied_roles` tables, together with the appropriate database indices.)
 
 ## Setup
     
-Include `Roleable::Subject` into your user (subject) model, e.g.:
+Include `Roleable::Subject` into your subject model, e.g.:
 
 ```ruby
 class User < ActiveRecord::Base
@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
 end
 ```  
 
-Include `Roleable::Resource` into any models you want to relate a user role to (resource), e.g.:
+Include `Roleable::Resource` into any models you want to relate a subject role to (resource), e.g.:
 
 ```ruby
 class Page < ActiveRecord::Base
@@ -108,10 +108,20 @@ user.roles_for_resource(nil)
   
 ### Resource
 
-Find users with a given role:
+Find subjects (users) with a given role:
 
 ```ruby
-page.users_with_role(:editor)
+page.subjects_with_role(:editor)
+```
+
+## Customization
+
+By default, roleable assumes that your subject model is called `User`. You can customize this by modifying the generated configuration intializer located at `config/initializers/roleable.rb`, e.g.:
+
+```ruby
+Roleable.configure do |config|
+  config.subject_class_name = 'principle'
+end
 ```
 
 Find users matching _any_ of a list of roles:

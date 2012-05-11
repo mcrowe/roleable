@@ -1,15 +1,15 @@
-module Roleable::UserRole
+module Roleable::AppliedRole
   
   def self.extended(base)
-    base.belongs_to :user
+    base.belongs_to :subject, :class_name => Roleable.configuration.subject_class_name
     base.belongs_to :role
     base.belongs_to :resource, :polymorphic => true
     
-    base.attr_accessible :role, :user, :resource
+    base.attr_accessible :role, :subject_id, :resource
   end
 
-  def with_user(user)
-    where(:user_id => user && user.id)
+  def with_subject(subject)
+    where(:subject_id => subject && subject.id)
   end
 
   def with_resource(resource)
@@ -35,14 +35,14 @@ module Roleable::UserRole
   #
   # Returns the record if it was saved, otherwise nil.
   def create_if_unique!(attributes)  
-    user_role = new(attributes)
-    
-    record_attributes = user_role.attributes.reject do |k, v| 
+    applied_role = new(attributes)
+
+    record_attributes = applied_role.attributes.reject do |k, v| 
       %w(id updated_at created_at).include?(k)
     end
     
-    if !exists?(record_attributes) && user_role.save
-      user_role
+    if !exists?(record_attributes) && applied_role.save
+      applied_role
     else
       nil
     end
