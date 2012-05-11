@@ -114,6 +114,12 @@ Find subjects (users) with a given role:
 page.subjects_with_role(:editor)
 ```
 
+Find subjects matching _any_ of a list of roles:
+
+```ruby
+page.subjects_with_role([:editor, :author])
+```
+
 ## Customization
 
 By default, roleable assumes that your subject model is called `User`. You can customize this by modifying the generated configuration intializer located at `config/initializers/roleable.rb`, e.g.:
@@ -122,12 +128,6 @@ By default, roleable assumes that your subject model is called `User`. You can c
 Roleable.configure do |config|
   config.subject_class_name = 'principle'
 end
-```
-
-Find users matching _any_ of a list of roles:
-
-```ruby
-page.users_with_role([:editor, :author])
 ```
 
 For more details check out the [API documentation](http://rubydoc.info/github/mcrowe/roleable/master/frames) on rubydoc.info.
