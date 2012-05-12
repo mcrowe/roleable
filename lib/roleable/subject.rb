@@ -1,5 +1,5 @@
 module Roleable::Subject
-  
+
   def self.included(base)
     base.has_many :applied_roles, :foreign_key => 'subject_id'
   end
@@ -16,8 +16,8 @@ module Roleable::Subject
   #
   def add_role(role_name, resource = nil)
     role = ::Role.find_by_name(role_name) or return
-    
-    ::AppliedRole.create_if_unique!(:subject_id => self.id, :role => role, :resource => resource)    
+
+    ::AppliedRole.create_if_unique!(:subject_id => self.id, :role => role, :resource => resource)
   end
 
   # Check if the subject has the given role for the given resource, or if they have the role globally
@@ -37,7 +37,7 @@ module Roleable::Subject
       with_role_name(role_name).
       exists?
   end
-  
+
   # Remove the given role from the subject for the given resource, or globally if no resource given.
   #
   # Returns <tt>true</tt> if the role was found and deleted, <tt>false</tt> otherwise.
@@ -49,12 +49,12 @@ module Roleable::Subject
   #
   def remove_role(role_name, resource = nil)
     applied_roles = ::AppliedRole.with_subject(self).with_resource(resource).with_role_name(role_name)
-    
+
     deleted_count = applied_roles.delete_all
-        
+
     deleted_count > 0
   end
-  
+
   # Return a list of resources of the given class, for which the subject has the given role.
   # If passed an array or roles, returns resources for which the subject has any of the roles.
   #
@@ -67,16 +67,16 @@ module Roleable::Subject
     applied_roles = ::AppliedRole.with_subject(self).with_role_name(role_name).with_resource_class(resource_class)
     resource_class.includes(:applied_roles).merge(applied_roles)
   end
-  
+
   # Return a list of roles that the subject has for the given resource.
   #
   # ==== Examples
   #
   #   user.roles_for_resource(page)   # => [role1, role2, ...]
-  #  
+  #
   def roles_for_resource(resource)
-    applied_roles = ::AppliedRole.with_subject(self).with_resource(resource)    
+    applied_roles = ::AppliedRole.with_subject(self).with_resource(resource)
     ::Role.includes(:applied_roles).merge(applied_roles)
   end
-  
+
 end

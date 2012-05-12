@@ -1,10 +1,10 @@
 module Roleable::AppliedRole
-  
+
   def self.extended(base)
     base.belongs_to :subject, :class_name => Roleable.configuration.subject_class_name
     base.belongs_to :role
     base.belongs_to :resource, :polymorphic => true
-    
+
     base.attr_accessible :role, :subject_id, :resource
   end
 
@@ -29,18 +29,18 @@ module Roleable::AppliedRole
   def with_resource_class(resource_class)
     where(:resource_type => resource_type_from_class(resource_class))
   end
-  
+
   # Create a record with the given attributes if there are no records
   # that already have those attributes.
   #
   # Returns the record if it was saved, otherwise nil.
-  def create_if_unique!(attributes)  
+  def create_if_unique!(attributes)
     applied_role = new(attributes)
 
-    record_attributes = applied_role.attributes.reject do |k, v| 
+    record_attributes = applied_role.attributes.reject do |k, v|
       %w(id updated_at created_at).include?(k)
     end
-    
+
     if !exists?(record_attributes) && applied_role.save
       applied_role
     else
@@ -57,5 +57,5 @@ module Roleable::AppliedRole
   def resource_type_from_class(resource_class)
     resource_class.name
   end
-  
+
 end

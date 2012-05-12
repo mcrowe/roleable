@@ -10,6 +10,6 @@ Dir['spec/support/**/*.rb'].each { |f| require File.expand_path("../../#{f}", __
 
 RSpec.configure do |config|
   config.extend WithModel
-  
+
   ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :database => ":memory:")
 end
