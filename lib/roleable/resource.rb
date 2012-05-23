@@ -1,7 +1,7 @@
 module Roleable::Resource
 
   def self.included(base)
-    base.has_many :applied_roles, :as => :resource
+    base.has_many :applied_roles, :as => :resource, :dependent => :destroy
   end
 
   # Return a list of users that have the given role for this resource.

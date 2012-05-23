@@ -1,7 +1,7 @@
 module Roleable::Subject
 
   def self.included(base)
-    base.has_many :applied_roles, :foreign_key => 'subject_id'
+    base.has_many :applied_roles, :foreign_key => 'subject_id', :dependent => :destroy
   end
 
   # Add a role to the subject scoped to the given resource or global if no resource given.

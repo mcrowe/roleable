@@ -4,13 +4,13 @@ describe Roleable::Resource do
 
   include_context 'with models'
 
-  describe '#subjects_with_role' do
+  before do
+    @page = Page.create
+    @editor_role = Role.create(:name => 'editor')
+    @author_role = Role.create(:name => 'author')
+  end
 
-    before do
-      @page = Page.create
-      @editor_role = Role.create(:name => 'editor')
-      @author_role = Role.create(:name => 'author')
-    end
+  describe '#subjects_with_role' do
 
     context 'with a single role' do
 
@@ -59,6 +59,16 @@ describe Roleable::Resource do
       end
     end
 
+  end
+  
+  describe '#destroy' do
+    
+    it 'destroys any associated applied_roles' do
+      User.create.add_role(:editor, @page)
+
+      expect { @page.destroy }.to change { AppliedRole.count}.by(-1)
+    end
+    
   end
 
 end

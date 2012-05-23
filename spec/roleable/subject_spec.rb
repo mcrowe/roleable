@@ -208,4 +208,14 @@ describe Roleable::Subject do
     end
   end
 
+  describe '#destroy' do
+    
+    it 'destroys any associated applied_roles' do
+      @user.add_role(:admin)
+
+      expect { @user.destroy }.to change { AppliedRole.count}.by(-1)
+    end
+    
+  end
+
 end
