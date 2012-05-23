@@ -5,3 +5,11 @@
 ## v0.0.2
 
 * Fix a bug that allowed users not associated with a resource to be listed in Resource#users_with_role.
+
+## v0.1.0
+
+* Allow resource_with_role and users_with_role to accept an array of role names.
+
+## v0.2.0
+
+* Allow the subject class name to be customized so that it does not always have to be "User".
