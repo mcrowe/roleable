@@ -13,3 +13,7 @@
 ## v0.2.0
 
 * Allow the subject class name to be customized so that it does not always have to be "User".
+
+## v0.2.1
+
+* Ensure applied_roles are destroyed when an associated subject or resource is destroyed.
